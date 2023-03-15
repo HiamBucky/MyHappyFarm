@@ -1,13 +1,12 @@
 import React from 'react'
 import SideBar from './SideBar'
-import SwitchBlock from './SwitchBlock'
 import Fan from '../components/Fan'
 import Water from '../components/Water'
 import Weather from '../components/Weather'
 import Light from '../components/Light'
 import {
   BrowserRouter as Router,
-  Routes, Route, Link
+  Routes, Route
 } from 'react-router-dom'
 function Hero() {
   return (
