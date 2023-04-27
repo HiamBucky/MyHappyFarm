@@ -1,22 +1,15 @@
 import React from 'react'
 import {UserCircleIcon} from '@heroicons/react/24/solid'
-import ModeBar from './ModeBar'
 import blackExit from '../assets/log-out.png'
-import blackWater from '../assets/black-water.png'
-import blackLight from '../assets/black-light.png'
-import blackFan from '../assets/black-fan.png'
-import blackWeather from '../assets/black-weather.png'
-const menuItems = [
-    { id: 1, label: "Weather", icon: blackWeather, link: "/" },
-    { id: 2, label: "Lighting System", icon: blackLight, link: "/light" },
-    { id: 3, label: "Fan System", icon: blackFan, link: "/fan" },
-    { id: 1, label: "Hydration System", icon: blackWater, link: "/irrigation" },
-];
+import {db} from "../firebase";
+import { useCollection } from 'react-firebase-hooks/firestore';
+import Module from './Module'
 
 function SideBar() {
+    const [modules] = useCollection(db.collection("modules"));
     return (
         <div className='space-y-10 bg-light_silver px-[18px] py-7 w-1/7'>
-            <div className='flex flex-col lg:gap-[254px]'>
+            <div className='flex flex-col lg:gap-[160px]'>
                 <div className='flex flex-row h-[64px] gap-1'>
                     <UserCircleIcon className='h-full'/>
                     <div className='align-middle py-2'>
@@ -25,9 +18,13 @@ function SideBar() {
                     </div>
                 </div>
                 <div className='align-middle flex flex-col gap-[18px]'>
-                    {menuItems.map(({ icon: Icon, label: Label, link: Link}) => {
+                    {modules?.docs.map((doc) => {
                         return (
-                            <ModeBar blackIcon={Icon} modeName={Label} link={Link}/>
+                            <Module 
+                                key={doc.id}
+                                id={doc.id}
+                                moduleName={doc.data().moduleName}
+                            />
                         )
                     })}
                 </div>

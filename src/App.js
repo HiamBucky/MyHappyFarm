@@ -1,13 +1,19 @@
-// import { Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes, Route, Link
+} from 'react-router-dom';
 import './App.css';
 import Header from './pages/Header';
-import Layout from './pages/Layout';
+import Home from './pages/Home';
 function App() {
   return (
-    <div className='App'>
-      <Header />
-      <Layout />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Header />} />
+        <Route exact path="/modules" element={<Home />} />
+        <Route exact path="/modules/:id" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
