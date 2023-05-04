@@ -11,7 +11,7 @@ import { collection } from 'firebase/firestore';
 import Dashboard from './Dashboard';
 function Home() {
   const [user] = useAuthState(auth);
-  const [modules] = useCollection(collection(db, "modules"));
+  const [ActivityLog] = useCollection(collection(db, "ActivityLog"));
   return (
     <>
       <div className='flex flex-row'>
@@ -24,11 +24,10 @@ function Home() {
               </div>
           </div>
           <div className='align-middle flex flex-col gap-[18px]'>
-            {modules?.docs.map((doc) => (
+            {ActivityLog?.docs.map((doc) => (
               <Module
                 key={doc.id}
-                id={doc.id}
-                moduleName={doc.data().moduleName}
+                Des={doc.data().Description}
               />
             ))}
           </div>

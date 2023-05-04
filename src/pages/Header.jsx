@@ -21,7 +21,7 @@ function Header() {
         MYHAPPYFARM
       </div>
       <div className='flex space-x-4'>
-        <button className='bg-light_silver p-2 rounded-full text-md px-4 text-black font-galindo' onClick={!user ? signIn : () => history("/modules")}>
+        <button className='bg-light_silver p-2 rounded-full text-md px-4 text-black font-galindo' onClick={history("/modules")}>
           {!user ? "Login" : "Open Dashboard"}
         </button>
       </div>

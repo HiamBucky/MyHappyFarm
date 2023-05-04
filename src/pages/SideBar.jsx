@@ -4,9 +4,10 @@ import blackExit from '../assets/log-out.png'
 import {db} from "../firebase";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Module from './Module'
+import { collection } from 'firebase/firestore';
 
 function SideBar() {
-    const [modules] = useCollection(db.collection("modules"));
+    const [logs] = useCollection(collection(db, "logs"));
     return (
         <div className='space-y-10 bg-light_silver px-[18px] py-7 w-1/7'>
             <div className='flex flex-col lg:gap-[160px]'>
@@ -18,12 +19,11 @@ function SideBar() {
                     </div>
                 </div>
                 <div className='align-middle flex flex-col gap-[18px]'>
-                    {modules?.docs.map((doc) => {
+                    {logs?.docs.map((doc) => {
                         return (
                             <Module 
                                 key={doc.id}
-                                id={doc.id}
-                                moduleName={doc.data().moduleName}
+                                des={doc.data().des}
                             />
                         )
                     })}

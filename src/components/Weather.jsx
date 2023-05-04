@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 import axios from 'axios';
+import { db } from "../firebase"
 function Weather() {
   const [data, setData] = useState({})
   const [location, setLocation] = useState('')
